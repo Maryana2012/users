@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import logger from 'morgan';
 import express from 'express';
+import usersRouter from './routs/users';
 
 dotenv.config();
 const app = express();
@@ -12,7 +13,9 @@ app.use(logger(formatLogger))
 app.use(cors())
 app.use(express.json())
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
+
+app.use('/users', usersRouter);
 
 app.use((req, res)=>{
     res.status(404).json({messge: 'Not found'})
