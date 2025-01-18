@@ -7,14 +7,14 @@ const userSchema = new Schema({
     email: {type: String, required: true},
     password: {type: String, required: true},
     token:{ type:String},
-    status:{type: String}
+    status:{type: String, required:true}
 },
 {
     versionKey: false
 });
 
 userSchema.methods.hashPassword = async function (password){
-    this.password = await bcrypt.hash(password);
+    this.password = await bcrypt.hash(password, 10);
 }
 
 

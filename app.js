@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import logger from 'morgan';
 import express from 'express';
-import usersRouter from './routs/users';
+import usersRouter from './routs/users.js';
 
 dotenv.config();
 const app = express();
@@ -18,11 +18,12 @@ app.use(express.json())
 app.use('/users', usersRouter);
 
 app.use((req, res)=>{
-    res.status(404).json({messge: 'Not found'})
+    res.status(404).json({message: 'Not found'})
 })
 
 app.use((err, req, res, next)=>{
     res.status(500).json({message: err.message})
+    // res.status(500).json({message: "55555"})
 })
 
 export default app;
